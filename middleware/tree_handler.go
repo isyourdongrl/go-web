@@ -1,6 +1,7 @@
-package main
+package middleware
 
 import (
+	"go-web/common"
 	"net/http"
 	"strings"
 )
@@ -24,7 +25,7 @@ func (h *HandlerBasedOnTree) ServeHTTP(writer http.ResponseWriter, request *http
 		writer.Write([]byte("page is not found"))
 		return
 	}
-	handler(NewContext(writer, request))
+	handler(common.NewContext(writer, request))
 }
 
 func (h *HandlerBasedOnTree) findRouter(path string) (HandlerFunc, bool) {

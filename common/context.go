@@ -1,4 +1,4 @@
-package main
+package common
 
 import (
 	"encoding/json"
@@ -52,4 +52,11 @@ func (c *Context) SystemErrJson(resp interface{}) error {
 
 func (c *Context) BadRequestJson(resp interface{}) error {
 	return c.WriteJson(http.StatusBadRequest, resp)
+}
+
+func NewContext(writer http.ResponseWriter, request *http.Request) *Context {
+	return &Context{
+		R: request,
+		W: writer,
+	}
 }
